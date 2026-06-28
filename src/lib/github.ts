@@ -1,7 +1,7 @@
 import { GithubRepository, GithubUser } from "@/types/github";
 
+
 export async function getUser(username: string):Promise<GithubUser> {
-    await new Promise((resolve) => setTimeout(resolve, 3000));
   const response = await fetch(
     `https://api.github.com/users/${username}`,
     {
