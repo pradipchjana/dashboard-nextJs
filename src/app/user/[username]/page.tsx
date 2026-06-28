@@ -10,8 +10,10 @@ type Props = {
 export default async function UserPage({ params }: Props) {
   const { username } = await params;
 
-  const user = await getUser(username);
-  const repos = await getRepositories(username);
+ const [user, repos] = await Promise.all([
+  getUser(username),
+  getRepositories(username),
+]);
 
   return (
     <main>
