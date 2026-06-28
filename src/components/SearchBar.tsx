@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function SearchBar() {
   const [username, setUsername] = useState("");
@@ -14,14 +14,18 @@ export default function SearchBar() {
   };
 
   return (
-    <div>
+    <div className="flex gap-3">
       <input
+        className="border rounded-lg px-4 py-2 w-80"
+        placeholder="GitHub username"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
-        placeholder="GitHub username"
       />
 
-      <button onClick={handleSearch}>
+      <button
+        className="bg-black text-white px-4 py-2 rounded-lg"
+        onClick={handleSearch}
+      >
         Search
       </button>
     </div>

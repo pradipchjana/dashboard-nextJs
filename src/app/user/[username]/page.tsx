@@ -1,4 +1,5 @@
-import { getUser } from "@/lib/github";
+import { getUser, getRepositories } from "@/lib/github";
+import RepositoryCard from "@/components/RepositoryCard";
 
 type Props = {
   params: Promise<{
@@ -10,6 +11,7 @@ export default async function UserPage({ params }: Props) {
   const { username } = await params;
 
   const user = await getUser(username);
+  const repos = await getRepositories(username);
 
   return (
     <main>
@@ -26,6 +28,14 @@ export default async function UserPage({ params }: Props) {
       <p>Followers: {user.followers}</p>
       <p>Following: {user.following}</p>
       <p>Repos: {user.public_repos}</p>
+      <h2>Repositories</h2>
+
+{repos.map((repo: any) => (
+  <RepositoryCard
+    key={repo.id}
+    repo={repo}
+  />
+))}
     </main>
   );
 }
